@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmdv7noltjnhu"]
+
+[ext_resource type="Texture2D" uid="uid://clma03w6iy0em" path="res://Assets/Personaggi/Guardia corazzata/sprite_0.png" id="1_a8k3e"]
+[ext_resource type="PackedScene" uid="uid://cnjwqh6dv58pi" path="res://AI/AI.tscn" id="2_usna8"]
+
+[sub_resource type="GDScript" id="GDScript_rgch0"]
+resource_name = "guardia_interazione.gd"
+script/source = "extends StaticBody2D
+
+@onready var testo : Label = $Label
+@onready var hitbox : CollisionShape2D = $CollisionShape2D
+@onready var AI : Control = $AI
+
+func _input(event):
+	if event.is_action_pressed(\"Interagisci\"):
+		hitbox.disabled = true
+		testo.visible = false
+		AI.visible = true
+		if (get_tree().get_first_node_in_group(\"PlayersGroup\") is Player):
+			var player = get_tree().get_first_node_in_group(\"PlayersGroup\")
+			player.STOP()
+	pass
+
+func _on_area_2d_body_entered(body):
+	if(body is Player):
+		testo.visible = true
+	pass 
+
+func _on_area_2d_body_exited(body):
+	if(body is Player):
+		testo.visible = false
+	pass 
+
+func sblocca():
+	var player = get_tree().get_first_node_in_group(\"PlayersGroup\")
+	if player:
+		player.GO()
+		testo.visible = true
+
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mu0d2"]
+size = Vector2(156.5, 217)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v43ml"]
+size = Vector2(415, 217)
+
+[node name="Guardia interazione" type="StaticBody2D"]
+script = SubResource("GDScript_rgch0")
+
+[node name="guardia" type="Sprite2D" parent="."]
+position = Vector2(81, 1)
+scale = Vector2(1.625, 1.625)
+texture = ExtResource("1_a8k3e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(76.75, -3.5)
+shape = SubResource("RectangleShape2D_mu0d2")
+
+[node name="interazione" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="interazione"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interazione/Area2D"]
+position = Vector2(84.5, -3.5)
+shape = SubResource("RectangleShape2D_v43ml")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -151.0
+offset_right = 167.0
+offset_bottom = -117.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Premi F per intergire"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AI" parent="." instance=ExtResource("2_usna8")]
+visible = false
+offset_left = -675.0
+offset_top = -731.0
+offset_right = 477.0
+offset_bottom = -70.0
+
+[connection signal="body_entered" from="interazione/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="interazione/Area2D" to="." method="_on_area_2d_body_exited"]

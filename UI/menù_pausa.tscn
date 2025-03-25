@@ -1,0 +1,232 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc7anxmrtj0q5"]
+
+[ext_resource type="Script" path="res://UI/menù_pausa.gd" id="1_smvmu"]
+[ext_resource type="AudioStream" uid="uid://cihqd65uxir20" path="res://Sonoro/pAUSE.mp3" id="3_k26ie"]
+
+[node name="Menù pausa" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_smvmu")
+
+[node name="Main" type="Panel" parent="."]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -83.0
+offset_top = -60.0
+offset_right = 77.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 2.56)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -54.0
+offset_right = 94.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.92, 0.377743)
+theme_override_constants/separation = 8
+
+[node name="Pausa" type="Label" parent="Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Pausa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resume" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Riprendi"
+
+[node name="Settings" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Impostazioni"
+
+[node name="Reset" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+text = "Resetta il livello"
+
+[node name="Return to main menù" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+text = "Ritorna al 
+menù princiaple
+"
+
+[node name="Exit" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Esci"
+
+[node name="Settings" type="Panel" parent="."]
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -72.0
+offset_right = 182.0
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Settings" type="Label" parent="Settings/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Impostazioni"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Musica" type="Button" parent="Settings/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Musica"
+
+[node name="Back" type="Button" parent="Settings/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Indietro"
+
+[node name="Musica" type="Panel" parent="."]
+process_mode = 2
+visible = false
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.912586, 1.15285)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Musica"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.932072, 1)
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Musica" type="Label" parent="Musica/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Musica : si aggiorna in gioco"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Musica menù" type="Label" parent="Musica/VBoxContainer"]
+layout_mode = 2
+text = "Musica menù"
+vertical_alignment = 1
+
+[node name="HSlider menù" type="HSlider" parent="Musica/VBoxContainer/Musica menù"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 3.0
+offset_right = 480.0
+offset_bottom = 19.0
+min_value = -30.0
+max_value = 0.0
+
+[node name="Musica pausa" type="Label" parent="Musica/VBoxContainer"]
+layout_mode = 2
+text = "Musica pausa"
+vertical_alignment = 1
+
+[node name="HSlider pausa" type="HSlider" parent="Musica/VBoxContainer/Musica pausa"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 3.0
+offset_right = 480.0
+offset_bottom = 19.0
+min_value = -30.0
+max_value = 0.0
+
+[node name="Musica di gioco" type="Label" parent="Musica/VBoxContainer"]
+layout_mode = 2
+text = "Musica di gioco"
+vertical_alignment = 1
+
+[node name="HSlider gioco" type="HSlider" parent="Musica/VBoxContainer/Musica di gioco"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 3.0
+offset_right = 480.0
+offset_bottom = 19.0
+min_value = -30.0
+max_value = 0.0
+
+[node name="Back Musica" type="Button" parent="Musica/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Back"
+
+[node name="Musica pausa" type="AudioStreamPlayer" parent="."]
+process_mode = 2
+stream = ExtResource("3_k26ie")
+volume_db = -20.0
+bus = &"Master pausa"
+
+[connection signal="pressed" from="Main/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer/Return to main menù" to="." method="_on_return_to_main_menù_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Settings/VBoxContainer/Musica" to="." method="_on_musica_pressed"]
+[connection signal="pressed" from="Settings/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="Musica/VBoxContainer/Musica menù/HSlider menù" to="." method="_on_h_slider_menù_value_changed"]
+[connection signal="value_changed" from="Musica/VBoxContainer/Musica pausa/HSlider pausa" to="." method="_on_h_slider_pausa_value_changed"]
+[connection signal="value_changed" from="Musica/VBoxContainer/Musica di gioco/HSlider gioco" to="." method="_on_h_slider_gioco_value_changed"]
+[connection signal="pressed" from="Musica/VBoxContainer/Back Musica" to="." method="_on_back_musica_pressed"]
+[connection signal="finished" from="Musica pausa" to="." method="_on_musica_pausa_finished"]

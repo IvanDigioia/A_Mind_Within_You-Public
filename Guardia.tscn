@@ -1,0 +1,102 @@
+[gd_scene load_steps=15 format=3 uid="uid://gwvhfjhwrfqq"]
+
+[ext_resource type="Script" path="res://Guardia.gd" id="1_ht841"]
+[ext_resource type="PackedScene" uid="uid://odjddg58kos4" path="res://projectile2.tscn" id="2_iys0i"]
+[ext_resource type="Texture2D" uid="uid://65o1oe2tdf04" path="res://Assets/Personaggi/Guardia/sprite_3.png" id="3_7ehko"]
+[ext_resource type="Texture2D" uid="uid://b2xkqy57i0hij" path="res://Assets/Personaggi/Guardia/New Piskel.png" id="4_makmu"]
+[ext_resource type="Texture2D" uid="uid://bkbwmrrocgjuw" path="res://Assets/Personaggi/Guardia/sprite_0.png" id="5_7qnvw"]
+[ext_resource type="Texture2D" uid="uid://cul1c2fntuj3h" path="res://Assets/Personaggi/Guardia/sprite_1.png" id="6_7y5cg"]
+[ext_resource type="Texture2D" uid="uid://bwt4c0swul3su" path="res://Assets/Personaggi/Guardia/sprite_4.png" id="7_d8k1i"]
+[ext_resource type="Texture2D" uid="uid://b7qebhsndd2s" path="res://Assets/Personaggi/Guardia/sprite_2.png" id="7_spula"]
+[ext_resource type="Script" path="res://Damageable.gd" id="8_1ytnr"]
+[ext_resource type="Texture2D" uid="uid://5cfjiquqlx71" path="res://Assets/Personaggi/Guardia/sprite_5.png" id="8_gge3h"]
+[ext_resource type="AudioStream" uid="uid://cju0mx1mipc2x" path="res://Sonoro/Morte_zombie.mp3" id="9_qo23v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nb3h2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_7qnvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7y5cg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_spula")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7ehko")
+}],
+"loop": false,
+"name": &"Damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 5.0,
+"texture": ExtResource("4_makmu")
+}, {
+"duration": 5.0,
+"texture": ExtResource("7_d8k1i")
+}, {
+"duration": 5.0,
+"texture": ExtResource("8_gge3h")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_7qnvw")
+}],
+"loop": false,
+"name": &"Stay",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_psg1p"]
+size = Vector2(12, 18.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_85hiy"]
+radius = 96.0052
+
+[node name="EnemyGuard" type="CharacterBody2D" groups=["EnemyGroup"]]
+script = ExtResource("1_ht841")
+projectile = ExtResource("2_iys0i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.500001, -1.49998)
+scale = Vector2(0.179688, 0.148438)
+sprite_frames = SubResource("SpriteFrames_nb3h2")
+animation = &"Attack"
+autoplay = "Stay"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.75)
+shape = SubResource("RectangleShape2D_psg1p")
+
+[node name="ProjectileSpawn2" type="Marker2D" parent="."]
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("8_1ytnr")
+
+[node name="Detection_Area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="AreaDet" type="CollisionShape2D" parent="Detection_Area"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_85hiy")
+
+[node name="Morte" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_qo23v")
+volume_db = -20.0
+bus = &"Master morte zombie"
+
+[connection signal="body_entered" from="Detection_Area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Detection_Area" to="." method="_on_detection_area_body_exited"]

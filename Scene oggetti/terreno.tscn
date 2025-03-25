@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://djrp3n27rebw7"]
+
+[ext_resource type="Texture2D" uid="uid://bdtqw26loy3iw" path="res://Assets/Terreno.png" id="1_5omd1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scr2i"]
+size = Vector2(536, 130)
+
+[node name="Terreno" type="StaticBody2D"]
+position = Vector2(62, 49)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(205, 64.5)
+scale = Vector2(4.1875, 2.66406)
+texture = ExtResource("1_5omd1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(205, 170)
+shape = SubResource("RectangleShape2D_scr2i")

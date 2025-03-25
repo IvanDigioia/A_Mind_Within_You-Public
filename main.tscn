@@ -1,0 +1,452 @@
+[gd_scene load_steps=25 format=3 uid="uid://ccddm0ldthlem"]
+
+[ext_resource type="Script" path="res://game_manager.gd" id="1_ihis1"]
+[ext_resource type="PackedScene" uid="uid://bqw77l2a0rwqm" path="res://level_1.tscn" id="1_okic3"]
+[ext_resource type="PackedScene" uid="uid://bc7anxmrtj0q5" path="res://UI/menù_pausa.tscn" id="2_7iwn3"]
+[ext_resource type="PackedScene" uid="uid://pn5llsfuaa4q" path="res://level_2.tscn" id="3_i1w4x"]
+[ext_resource type="PackedScene" uid="uid://wqgbx7bupj1g" path="res://player.tscn" id="4_4hh7m"]
+[ext_resource type="PackedScene" uid="uid://d0ga2683c6qsu" path="res://level_3.tscn" id="4_7667o"]
+[ext_resource type="PackedScene" uid="uid://r3cteeqd7rv7" path="res://Zombie.tscn" id="5_11fpv"]
+[ext_resource type="PackedScene" uid="uid://dlti1bkat0oni" path="res://Scene oggetti/muro aperto sotto.tscn" id="5_go6g2"]
+[ext_resource type="PackedScene" uid="uid://cn5wpl8f7qhjx" path="res://level_4.tscn" id="5_olldf"]
+[ext_resource type="Texture2D" uid="uid://ehgn540cfv1q" path="res://Assets/Oggetti di scena fisici/Muri/Muro con porta aperta/Muro con porta apera.png" id="7_bw71q"]
+[ext_resource type="AudioStream" uid="uid://cguw0puv1gq7l" path="res://Sonoro/eSCAPEtHElAB.mp3" id="8_col0d"]
+[ext_resource type="PackedScene" uid="uid://bu283oftawj0k" path="res://Scene oggetti/cassa.tscn" id="9_avmd7"]
+[ext_resource type="PackedScene" uid="uid://gwvhfjhwrfqq" path="res://Guardia.tscn" id="9_puckw"]
+[ext_resource type="PackedScene" uid="uid://bqs2yl1by6evb" path="res://Scene oggetti/piattaforma_corta.tscn" id="10_v2vob"]
+[ext_resource type="PackedScene" uid="uid://4cao7j31ny5t" path="res://Scene oggetti/Cancello chiuso.tscn" id="11_ey6h5"]
+[ext_resource type="PackedScene" uid="uid://dmdv7noltjnhu" path="res://guardia_interaione.tscn" id="11_so323"]
+[ext_resource type="Texture2D" uid="uid://bdb2w6vlrd1pg" path="res://Assets/Door.png" id="12_4j4l1"]
+[ext_resource type="PackedScene" uid="uid://4n0ka1mo5s5u" path="res://Scene oggetti/barile.tscn" id="12_ighif"]
+[ext_resource type="PackedScene" uid="uid://jvifqbwr73h2" path="res://Scene oggetti/Tubo.tscn" id="15_y05nr"]
+[ext_resource type="PackedScene" uid="uid://bl4bpl03cd7ey" path="res://comandi.tscn" id="17_kbw7f"]
+[ext_resource type="Texture2D" uid="uid://bqy4kqh52e2mh" path="res://Assets/Personaggi/Zombie/sprite_10.png" id="19_clr3n"]
+[ext_resource type="Texture2D" uid="uid://djxw1hnqph04" path="res://Assets/Oggetti vari senza hitbox/ventola.png" id="20_jirkb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w31nb"]
+size = Vector2(154, 304.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebrjs"]
+size = Vector2(116.875, 181.098)
+
+[node name="GameManager" type="Node"]
+process_mode = 1
+script = ExtResource("1_ihis1")
+metadata/_edit_vertical_guides_ = []
+
+[node name="Level 1" parent="." instance=ExtResource("1_okic3")]
+position = Vector2(-4, -4)
+metadata/_edit_group_ = true
+
+[node name="Level 2" parent="." instance=ExtResource("3_i1w4x")]
+position = Vector2(5191, 4)
+
+[node name="Level 3" parent="." instance=ExtResource("4_7667o")]
+position = Vector2(11291, 4)
+metadata/_edit_group_ = true
+
+[node name="Level 4" parent="." instance=ExtResource("5_olldf")]
+
+[node name="Comandi" parent="." instance=ExtResource("17_kbw7f")]
+offset_left = -409.0
+offset_top = -200.0
+offset_right = -409.0
+offset_bottom = -200.0
+metadata/_edit_group_ = true
+
+[node name="Player" parent="." instance=ExtResource("4_4hh7m")]
+position = Vector2(237, 392)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+position = Vector2(0, 14)
+remote_path = NodePath("../../Camera2D")
+metadata/_edit_group_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menù pausa" parent="CanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("2_7iwn3")]
+game_manager = NodePath("../..")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(237, 406)
+zoom = Vector2(0.8, 0.8)
+limit_left = 0
+limit_top = -530
+limit_right = 3455
+limit_bottom = 550
+position_smoothing_enabled = true
+editor_draw_limits = true
+metadata/_edit_group_ = true
+
+[node name="Enemy level 1" type="Node" parent="."]
+
+[node name="EnemyZombie" parent="Enemy level 1" instance=ExtResource("5_11fpv")]
+position = Vector2(1739, 418)
+scale = Vector2(9.07, 9.07)
+
+[node name="EnemyZombie2" parent="Enemy level 1" instance=ExtResource("5_11fpv")]
+position = Vector2(2710, 420)
+scale = Vector2(9.07, 9.07)
+
+[node name="Enemy level 2" type="Node" parent="."]
+
+[node name="EnemyZombie2" parent="Enemy level 2" instance=ExtResource("5_11fpv")]
+position = Vector2(6698, 430)
+scale = Vector2(9.07, 9.07)
+
+[node name="EnemyZombie3" parent="Enemy level 2" instance=ExtResource("5_11fpv")]
+position = Vector2(7386, 430)
+scale = Vector2(9.07, 9.07)
+
+[node name="EnemyZombie4" parent="Enemy level 2" instance=ExtResource("5_11fpv")]
+position = Vector2(7995, 430)
+scale = Vector2(9.07, 9.07)
+
+[node name="Enemy level 3" type="Node" parent="."]
+
+[node name="EnemyZombie" parent="Enemy level 3" instance=ExtResource("5_11fpv")]
+position = Vector2(13610, 431)
+scale = Vector2(9.07, 9.07)
+
+[node name="EnemyZombie2" parent="Enemy level 3" instance=ExtResource("5_11fpv")]
+position = Vector2(14529, 427)
+scale = Vector2(9.07, 9.07)
+
+[node name="EnemyGuard" parent="Enemy level 3" instance=ExtResource("9_puckw")]
+position = Vector2(12535, 430)
+scale = Vector2(9.07, 9.07)
+
+[node name="Oggetti sopra il player" type="Node" parent="."]
+
+[node name="Level 1" type="Node" parent="Oggetti sopra il player"]
+
+[node name="Muro aperto sotto" parent="Oggetti sopra il player/Level 1" instance=ExtResource("5_go6g2")]
+position = Vector2(623, 97)
+scale = Vector2(1.08, 1)
+collision_layer = 3
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[node name="Porta aperta" type="TextureRect" parent="Oggetti sopra il player/Level 1"]
+offset_left = 408.0
+offset_top = 200.0
+offset_right = 808.0
+offset_bottom = 500.0
+scale = Vector2(1.08, 1.01136)
+texture = ExtResource("7_bw71q")
+metadata/_edit_group_ = true
+
+[node name="Porta level 2" type="Area2D" parent="Oggetti sopra il player/Level 1"]
+position = Vector2(3340, 235)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Oggetti sopra il player/Level 1/Porta level 2"]
+position = Vector2(-33.7503, 132)
+scale = Vector2(1.5586, 1.92969)
+texture = ExtResource("12_4j4l1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Oggetti sopra il player/Level 1/Porta level 2"]
+position = Vector2(-33.25, 137)
+shape = SubResource("RectangleShape2D_w31nb")
+
+[node name="Porta level 4" type="Area2D" parent="Oggetti sopra il player/Level 1"]
+position = Vector2(-26, 612)
+scale = Vector2(1.6, 1.64)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Oggetti sopra il player/Level 1/Porta level 4"]
+position = Vector2(0, -26.8414)
+scale = Vector2(1, 1.4194)
+texture = ExtResource("12_4j4l1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Oggetti sopra il player/Level 1/Porta level 4"]
+position = Vector2(0, -26.5244)
+shape = SubResource("RectangleShape2D_ebrjs")
+
+[node name="Ventola" type="Area2D" parent="Oggetti sopra il player/Level 1"]
+position = Vector2(759, -20)
+scale = Vector2(1.6, 1.64)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Oggetti sopra il player/Level 1/Ventola"]
+texture = ExtResource("20_jirkb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Oggetti sopra il player/Level 1/Ventola"]
+position = Vector2(2.8125, 8.84145)
+shape = SubResource("RectangleShape2D_ebrjs")
+
+[node name="Level 2" type="Node" parent="Oggetti sopra il player"]
+
+[node name="Cassa integra" parent="Oggetti sopra il player/Level 2" instance=ExtResource("9_avmd7")]
+position = Vector2(5999, 449)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="Cassa integra2" parent="Oggetti sopra il player/Level 2" instance=ExtResource("9_avmd7")]
+position = Vector2(6103, 449)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="Cassa integra3" parent="Oggetti sopra il player/Level 2" instance=ExtResource("9_avmd7")]
+position = Vector2(6103, 353)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="Cassa integra4" parent="Oggetti sopra il player/Level 2" instance=ExtResource("9_avmd7")]
+position = Vector2(6207, 449)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="Cassa integra5" parent="Oggetti sopra il player/Level 2" instance=ExtResource("9_avmd7")]
+position = Vector2(6207, 353)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="Cassa integra6" parent="Oggetti sopra il player/Level 2" instance=ExtResource("9_avmd7")]
+position = Vector2(6207, 257)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="Cassa integra7" parent="Oggetti sopra il player/Level 2" instance=ExtResource("9_avmd7")]
+position = Vector2(6311, 449)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="Cassa integra8" parent="Oggetti sopra il player/Level 2" instance=ExtResource("9_avmd7")]
+position = Vector2(6311, 353)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="Cassa integra9" parent="Oggetti sopra il player/Level 2" instance=ExtResource("9_avmd7")]
+position = Vector2(6311, 257)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="Cassa integra10" parent="Oggetti sopra il player/Level 2" instance=ExtResource("9_avmd7")]
+position = Vector2(6311, 161)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="PiattaformaCorta" parent="Oggetti sopra il player/Level 2" instance=ExtResource("10_v2vob")]
+position = Vector2(6698, -11)
+collision_layer = 3
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[node name="PiattaformaCorta2" parent="Oggetti sopra il player/Level 2" instance=ExtResource("10_v2vob")]
+position = Vector2(7332, -11)
+collision_layer = 3
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[node name="PiattaformaCorta3" parent="Oggetti sopra il player/Level 2" instance=ExtResource("10_v2vob")]
+position = Vector2(8062, -10)
+collision_layer = 3
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" parent="Oggetti sopra il player/Level 2" instance=ExtResource("11_ey6h5")]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(8657, 316)
+scale = Vector2(3.91992, 3.261)
+collision_layer = 3
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[node name="Muro aperto sotto2" parent="Oggetti sopra il player/Level 2" instance=ExtResource("5_go6g2")]
+position = Vector2(8623, 101)
+scale = Vector2(1.08, 0.4)
+collision_layer = 3
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[node name="Barile" parent="Oggetti sopra il player/Level 2" instance=ExtResource("12_ighif")]
+position = Vector2(6420, 404)
+scale = Vector2(1, 1.12)
+collision_layer = 3
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[node name="Porta level 3" type="Area2D" parent="Oggetti sopra il player/Level 2"]
+position = Vector2(9511, 244)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Oggetti sopra il player/Level 2/Porta level 3"]
+position = Vector2(-33.2503, 132)
+scale = Vector2(1.56641, 1.92969)
+texture = ExtResource("12_4j4l1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Oggetti sopra il player/Level 2/Porta level 3"]
+position = Vector2(-32, 138)
+shape = SubResource("RectangleShape2D_w31nb")
+
+[node name="Level 3" type="Node" parent="Oggetti sopra il player"]
+
+[node name="Cassa integra" parent="Oggetti sopra il player/Level 3" instance=ExtResource("9_avmd7")]
+position = Vector2(12851, 453)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="Cassa integra2" parent="Oggetti sopra il player/Level 3" instance=ExtResource("9_avmd7")]
+position = Vector2(12955, 453)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="Cassa integra3" parent="Oggetti sopra il player/Level 3" instance=ExtResource("9_avmd7")]
+position = Vector2(12955, 357)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="Cassa integra4" parent="Oggetti sopra il player/Level 3" instance=ExtResource("9_avmd7")]
+position = Vector2(13059, 453)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="Cassa integra5" parent="Oggetti sopra il player/Level 3" instance=ExtResource("9_avmd7")]
+position = Vector2(13059, 357)
+collision_layer = 3
+collision_mask = 3
+script = null
+metadata/_edit_group_ = true
+
+[node name="Tubo" parent="Oggetti sopra il player/Level 3" instance=ExtResource("15_y05nr")]
+position = Vector2(13847, -25)
+collision_layer = 3
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[node name="Barile" parent="Oggetti sopra il player/Level 3" instance=ExtResource("12_ighif")]
+position = Vector2(13064, 261)
+rotation = 1.5708
+scale = Vector2(1, 1.12)
+collision_layer = 3
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[node name="Barile2" parent="Oggetti sopra il player/Level 3" instance=ExtResource("12_ighif")]
+position = Vector2(13168, 410)
+scale = Vector2(1, 1.12)
+collision_layer = 3
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[node name="Barile3" parent="Oggetti sopra il player/Level 3" instance=ExtResource("12_ighif")]
+position = Vector2(13168, 263)
+scale = Vector2(1, 1.12)
+collision_layer = 3
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[node name="Barile4" parent="Oggetti sopra il player/Level 3" instance=ExtResource("12_ighif")]
+position = Vector2(13168, 114)
+scale = Vector2(1, 1.12)
+collision_layer = 3
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[node name="Sprite10" type="Sprite2D" parent="Oggetti sopra il player/Level 3"]
+position = Vector2(12059, 411)
+scale = Vector2(1.49956, 1.36516)
+texture = ExtResource("19_clr3n")
+metadata/_edit_group_ = true
+
+[node name="Sprite11" type="Sprite2D" parent="Oggetti sopra il player/Level 3"]
+position = Vector2(14151, 415)
+scale = Vector2(1.49956, 1.36516)
+texture = ExtResource("19_clr3n")
+metadata/_edit_group_ = true
+
+[node name="Ventola" type="Area2D" parent="Oggetti sopra il player/Level 3"]
+position = Vector2(15535, -154)
+scale = Vector2(1.6, 1.64)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Oggetti sopra il player/Level 3/Ventola"]
+texture = ExtResource("20_jirkb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Oggetti sopra il player/Level 3/Ventola"]
+position = Vector2(2.8125, 8.84145)
+shape = SubResource("RectangleShape2D_ebrjs")
+
+[node name="Porta level 4" type="Area2D" parent="Oggetti sopra il player/Level 3"]
+position = Vector2(15622, 394)
+scale = Vector2(1.6, 1.64)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Oggetti sopra il player/Level 3/Porta level 4"]
+position = Vector2(0, -26.8414)
+scale = Vector2(1, 1.4194)
+texture = ExtResource("12_4j4l1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Oggetti sopra il player/Level 3/Porta level 4"]
+position = Vector2(0, -26.5244)
+shape = SubResource("RectangleShape2D_ebrjs")
+
+[node name="Level 4" type="Node" parent="Oggetti sopra il player"]
+
+[node name="Porta finale" type="Area2D" parent="Oggetti sopra il player/Level 4"]
+position = Vector2(18626, 256)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Oggetti sopra il player/Level 4/Porta finale"]
+position = Vector2(-35.0006, 107.75)
+scale = Vector2(1.85938, 2.3086)
+texture = ExtResource("12_4j4l1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Oggetti sopra il player/Level 4/Porta finale"]
+position = Vector2(-32, 114.25)
+shape = SubResource("RectangleShape2D_w31nb")
+
+[node name="Guardia interazione" parent="Oggetti sopra il player/Level 4" instance=ExtResource("11_so323")]
+position = Vector2(18096, 407)
+
+[node name="Musica di gioco" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_col0d")
+bus = &"Master gioco"
+
+[node name="Muro blocca proiettili" parent="." instance=ExtResource("11_ey6h5")]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(4193, -1172)
+scale = Vector2(0.817202, 59.5639)
+collision_layer = 3
+collision_mask = 3
+metadata/_edit_group_ = true
+
+[connection signal="body_entered" from="Oggetti sopra il player/Level 1/Porta level 2" to="." method="_on_porta_level_2_body_entered"]
+[connection signal="body_entered" from="Oggetti sopra il player/Level 1/Porta level 4" to="." method="_on_porta_level_4_body_entered"]
+[connection signal="body_entered" from="Oggetti sopra il player/Level 1/Ventola" to="." method="_on_ventola_body_entered"]
+[connection signal="body_entered" from="Oggetti sopra il player/Level 2/Porta level 3" to="." method="_on_porta_level_3_body_entered"]
+[connection signal="body_entered" from="Oggetti sopra il player/Level 3/Ventola" to="." method="_on_ventola_body_entered"]
+[connection signal="body_entered" from="Oggetti sopra il player/Level 3/Porta level 4" to="." method="_on_porta_level_4_body_entered"]
+[connection signal="body_entered" from="Oggetti sopra il player/Level 4/Porta finale" to="." method="_on_porta_finale_body_entered"]
+[connection signal="finished" from="Musica di gioco" to="." method="_on_musica_di_gioco_finished"]

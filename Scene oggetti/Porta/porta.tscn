@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://fbb714jnwfuu"]
+
+[ext_resource type="Texture2D" uid="uid://cvotsf2jv2hgp" path="res://Assets/Oggetti di scena fisici/Porta chiusa/Porta chiusa.png" id="1_rx02f"]
+[ext_resource type="Script" path="res://porta.gd" id="1_xrrl7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_to0lf"]
+size = Vector2(236, 295)
+
+[node name="Porta" type="Area2D"]
+script = ExtResource("1_xrrl7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(90, -88.5)
+shape = SubResource("RectangleShape2D_to0lf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(122, -84)
+scale = Vector2(2.82813, 1.89063)
+texture = ExtResource("1_rx02f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnjwqh6dv58pi"]
+
+[ext_resource type="Script" path="res://AI/AI.gd" id="1_lps8b"]
+
+[node name="AI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lps8b")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 273.0
+offset_top = 359.0
+offset_right = 875.0
+offset_bottom = 567.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 602.0
+offset_bottom = 206.0
+
+[node name="TextEdit" type="TextEdit" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Scrivi qui"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Parla"
+
+[node name="Button2" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Chiudi"
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 205.0
+offset_top = 51.0
+offset_right = 961.0
+offset_bottom = 353.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel2"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 17.0
+offset_right = 742.0
+offset_bottom = 286.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/ScrollContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]

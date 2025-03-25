@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlti1bkat0oni"]
+
+[ext_resource type="Texture2D" uid="uid://bj3mfsbcymu8q" path="res://Assets/Oggetti di scena fisici/Muri/Muro aperto in basso/Muro senza aperto in basso.png" id="1_eq472"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qof8a"]
+size = Vector2(75, 723)
+
+[node name="Muro aperto sotto" type="StaticBody2D"]
+position = Vector2(457, 254)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.5, -244)
+scale = Vector2(1.02, 2.62667)
+texture = ExtResource("1_eq472")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7.5, -245.5)
+shape = SubResource("RectangleShape2D_qof8a")

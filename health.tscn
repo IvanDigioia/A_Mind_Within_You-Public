@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://cx0sx760jiai7"]
+
+[ext_resource type="Script" path="res://Health.gd" id="1_vbk5v"]
+[ext_resource type="Theme" uid="uid://k4o0h1y17s6r" path="res://healthBar.tres" id="2_2m2li"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_thito"]
+bg_color = Color(0.619608, 0, 0.176471, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_poefh"]
+bg_color = Color(0.588235, 0, 0.0784314, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.54902, 0.0196078, 0.14902, 1)
+
+[node name="HealthNode" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("1_vbk5v")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+layout_direction = 2
+layout_mode = 0
+offset_right = 488.0
+offset_bottom = 27.0
+size_flags_horizontal = 0
+theme = ExtResource("2_2m2li")
+theme_override_styles/background = SubResource("StyleBoxFlat_thito")
+theme_override_styles/fill = SubResource("StyleBoxFlat_poefh")
+max_value = 150.0
+value = 150.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[connection signal="changed" from="Health" to="HealthBar" method="set_value"]
+[connection signal="max_changed" from="Health" to="HealthBar" method="set_max"]

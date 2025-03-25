@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://bu283oftawj0k"]
+
+[ext_resource type="Script" path="res://cassa_integra.gd" id="1_q5pch"]
+[ext_resource type="Texture2D" uid="uid://dafd126ajs1yo" path="res://Assets/Oggetti di scena fisici/Cassa/sprite_0.png" id="1_rs7ih"]
+[ext_resource type="Texture2D" uid="uid://781kj2p1ocno" path="res://Assets/Oggetti di scena fisici/Cassa/sprite_1.png" id="2_aurqc"]
+[ext_resource type="Texture2D" uid="uid://du65w1gob4hxc" path="res://Assets/Oggetti di scena fisici/Cassa/sprite_2.png" id="3_y6jjt"]
+[ext_resource type="Texture2D" uid="uid://bf78bsw8scp3w" path="res://Assets/Oggetti di scena fisici/Cassa/sprite_3.png" id="4_mhlul"]
+[ext_resource type="Texture2D" uid="uid://dr4bw0vwayawq" path="res://Assets/Oggetti di scena fisici/Cassa/sprite_4.png" id="5_3jcag"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_npnai"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rs7ih")
+}],
+"loop": true,
+"name": &"Cassa 1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_aurqc")
+}],
+"loop": true,
+"name": &"Cassa 2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_y6jjt")
+}],
+"loop": true,
+"name": &"Cassa 3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_mhlul")
+}],
+"loop": true,
+"name": &"Cassa 4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3jcag")
+}],
+"loop": true,
+"name": &"Cassa 5",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7njt"]
+size = Vector2(104, 96)
+
+[node name="Cassa integra" type="StaticBody2D"]
+position = Vector2(61, 125)
+script = ExtResource("1_q5pch")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_npnai")
+animation = &"Cassa 1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 2)
+shape = SubResource("RectangleShape2D_v7njt")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)

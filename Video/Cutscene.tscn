@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://4ty5xahf4s52"]
+
+[ext_resource type="Script" path="res://Video/Cutscene.gd" id="1_j2kyp"]
+[ext_resource type="VideoStream" path="res://Video/nfjc5-2e4uv.ogv" id="2_1mlhb"]
+
+[node name="Cutscene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j2kyp")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_1mlhb")
+expand = true
+
+[node name="Label" type="Label" parent="VideoStreamPlayer"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -33.0
+offset_right = 276.0
+grow_vertical = 0
+text = "Premi barra spaziatrice per saltare il filmato"
+vertical_alignment = 1
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

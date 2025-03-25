@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://du0xa3lpviwrh"]
+
+[ext_resource type="Script" path="res://Fuoco.gd" id="1_bm7y1"]
+[ext_resource type="Texture2D" uid="uid://dlm8febd3mh4m" path="res://Assets/Oggetti di scena fisici/Fuoco/sprite_0.png" id="2_muick"]
+[ext_resource type="Texture2D" uid="uid://m8qb0tbpauwf" path="res://Assets/Oggetti di scena fisici/Fuoco/sprite_1.png" id="3_tw6r4"]
+[ext_resource type="Texture2D" uid="uid://lmik8vbnnr3n" path="res://Assets/Oggetti di scena fisici/Fuoco/sprite_2.png" id="4_opx6x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4yoyd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_muick")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tw6r4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_opx6x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pc517"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iadym"]
+size = Vector2(32, 32)
+
+[node name="Fuoco" type="StaticBody2D"]
+script = ExtResource("1_bm7y1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4yoyd")
+frame = 1
+frame_progress = 0.84104
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_pc517")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_iadym")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://c85p1l0tlt062"]
+
+[ext_resource type="Script" path="res://proiettile.gd" id="1_c2p0b"]
+[ext_resource type="Texture2D" uid="uid://dgl588186kuqj" path="res://Assets/Colpi/Colpo0.png" id="2_wm2cc"]
+[ext_resource type="Texture2D" uid="uid://b2og00x52l1j6" path="res://Assets/Colpi/Colpo1.png" id="3_8btfb"]
+[ext_resource type="Texture2D" uid="uid://db53cm38sttn5" path="res://Assets/Colpi/Colpo2.png" id="4_waxg6"]
+[ext_resource type="Texture2D" uid="uid://cubki1j7t7xi1" path="res://Assets/Colpi/Colpo3.png" id="5_lj27n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_37dcp"]
+radius = 2.25866
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ajch"]
+resource_local_to_scene = true
+resource_name = "Pro"
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wm2cc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8btfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_waxg6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lj27n")
+}],
+"loop": true,
+"name": &"ColpoZombie",
+"speed": 5.0
+}]
+
+[node name="Proiettile" type="Area2D"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(4, 1)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_c2p0b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -1)
+rotation = -3.14159
+scale = Vector2(0.99, 0.99)
+shape = SubResource("CircleShape2D_37dcp")
+
+[node name="SpriteProiettile" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -1)
+scale = Vector2(0.0771485, 0.089844)
+sprite_frames = SubResource("SpriteFrames_1ajch")
+animation = &"ColpoZombie"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(-5, -1)
+target_position = Vector2(-11, 0)
+collision_mask = 3
+collide_with_areas = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

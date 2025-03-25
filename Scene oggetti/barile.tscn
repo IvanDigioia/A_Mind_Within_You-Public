@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://4n0ka1mo5s5u"]
+
+[ext_resource type="Texture2D" uid="uid://p8myoohrs7y4" path="res://Assets/Oggetti di scena fisici/Barile/Barile.png" id="1_lg7av"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2pbc"]
+size = Vector2(98, 132)
+
+[node name="Barile" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.81, 0.756667)
+texture = ExtResource("1_lg7av")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 18)
+shape = SubResource("RectangleShape2D_t2pbc")

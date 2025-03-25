@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://odjddg58kos4"]
+
+[ext_resource type="Script" path="res://proiettile.gd" id="1_v004h"]
+[ext_resource type="Texture2D" uid="uid://e8ae3n43u1hc" path="res://Assets/Bullet.png" id="2_b16bh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ywtic"]
+radius = 2.25866
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ux1br"]
+resource_local_to_scene = true
+resource_name = "Pro"
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b16bh")
+}],
+"loop": true,
+"name": &"Proiettile",
+"speed": 5.0
+}]
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_v004h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -1)
+rotation = -3.14159
+scale = Vector2(0.99, 0.99)
+shape = SubResource("CircleShape2D_ywtic")
+
+[node name="SpriteProiettile" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3.5, 3.42727e-07)
+scale = Vector2(0.101563, 0.09375)
+sprite_frames = SubResource("SpriteFrames_ux1br")
+animation = &"Proiettile"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(-5, -1)
+target_position = Vector2(-11, 0)
+collision_mask = 3
+collide_with_areas = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

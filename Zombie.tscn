@@ -1,0 +1,110 @@
+[gd_scene load_steps=16 format=3 uid="uid://r3cteeqd7rv7"]
+
+[ext_resource type="Script" path="res://Zombie.gd" id="1_4kooq"]
+[ext_resource type="PackedScene" uid="uid://c85p1l0tlt062" path="res://Scene oggetti/proiettile.tscn" id="2_moqa5"]
+[ext_resource type="Texture2D" uid="uid://ec1tglvp0qcc" path="res://Assets/Personaggi/Zombie/sprite_00.png" id="2_nex2h"]
+[ext_resource type="Texture2D" uid="uid://copdqoxv4ttl3" path="res://Assets/Personaggi/Zombie/sprite_04.png" id="3_3cca6"]
+[ext_resource type="Texture2D" uid="uid://dyt5mn2m1ec1w" path="res://Assets/Personaggi/Zombie/sprite_05.png" id="4_hjvx5"]
+[ext_resource type="Texture2D" uid="uid://cxnegk58yrt4" path="res://Assets/Personaggi/Zombie/sprite_06.png" id="5_6uegv"]
+[ext_resource type="Texture2D" uid="uid://da2c1wsc7dty" path="res://Assets/Personaggi/Zombie/sprite_07.png" id="6_f8hcw"]
+[ext_resource type="Texture2D" uid="uid://p0osnmwinfea" path="res://Assets/Personaggi/Zombie/sprite_08.png" id="7_cwu2r"]
+[ext_resource type="Script" path="res://Damageable.gd" id="7_exwuc"]
+[ext_resource type="Texture2D" uid="uid://dt4necqqp5tmu" path="res://Assets/Personaggi/Zombie/sprite_09.png" id="8_ipvou"]
+[ext_resource type="Texture2D" uid="uid://bqy4kqh52e2mh" path="res://Assets/Personaggi/Zombie/sprite_10.png" id="9_347ar"]
+[ext_resource type="AudioStream" uid="uid://cju0mx1mipc2x" path="res://Sonoro/Morte_zombie.mp3" id="12_it5go"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nb3h2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3cca6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hjvx5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6uegv")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_f8hcw")
+}],
+"loop": false,
+"name": &"Damage",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 5.0,
+"texture": ExtResource("7_cwu2r")
+}, {
+"duration": 5.0,
+"texture": ExtResource("8_ipvou")
+}, {
+"duration": 5.0,
+"texture": ExtResource("9_347ar")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3cca6")
+}],
+"loop": true,
+"name": &"Sattack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nex2h")
+}],
+"loop": false,
+"name": &"Stay",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_psg1p"]
+size = Vector2(10, 18.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_85hiy"]
+radius = 96.0052
+
+[node name="EnemyZombie" type="CharacterBody2D" groups=["EnemyGroup"]]
+script = ExtResource("1_4kooq")
+projectile = ExtResource("2_moqa5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4.76837e-07, -5.5)
+scale = Vector2(0.195313, 0.210938)
+sprite_frames = SubResource("SpriteFrames_nb3h2")
+animation = &"Stay"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.75)
+shape = SubResource("RectangleShape2D_psg1p")
+
+[node name="ProjectileSpawn2" type="Marker2D" parent="."]
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("7_exwuc")
+
+[node name="Detection_Area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="AreaDet" type="CollisionShape2D" parent="Detection_Area"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_85hiy")
+
+[node name="Morte" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_it5go")
+volume_db = -20.0
+bus = &"Master morte zombie"
+
+[connection signal="body_entered" from="Detection_Area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="Detection_Area" to="." method="_on_detection_area_body_exited"]

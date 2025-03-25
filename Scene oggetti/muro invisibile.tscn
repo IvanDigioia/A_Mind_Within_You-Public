@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx4gc4sov35hw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fp32s"]
+size = Vector2(34, 1419)
+
+[node name="Muro invisibile" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 699.5)
+shape = SubResource("RectangleShape2D_fp32s")

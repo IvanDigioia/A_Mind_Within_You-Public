@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjj08pnqpcwyp"]
+
+[ext_resource type="Script" path="res://Fine.gd" id="1_pvg76"]
+[ext_resource type="Texture2D" uid="uid://boc3tuavu510j" path="res://Assets/Nero.png" id="2_j5x7x"]
+
+[node name="Fine" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pvg76")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_j5x7x")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -369.0
+offset_top = -98.0
+offset_right = 369.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -54.5
+offset_right = 91.0
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Grazie da parte di tutto il team di P&G per aver giocato \"A mind within you\".
+Se il gioco ti è piaciuto aggiungilo alla tua lista desideri, 
+oppure segui il gioco dalla pagina di steam per rimanere aggiornato sulle prossime novità"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Main menù" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Ritorna al menù principale"
+
+[node name="Exit" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Esci
+"
+
+[connection signal="pressed" from="Panel/VBoxContainer/Main menù" to="." method="_on_main_menù_pressed" flags=18]
+[connection signal="pressed" from="Panel/VBoxContainer/Exit" to="." method="_on_exit_pressed" flags=18]

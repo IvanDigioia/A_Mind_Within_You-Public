@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnlfdsqn0onxi"]
+
+[ext_resource type="Script" path="res://Mana.gd" id="1_qst30"]
+[ext_resource type="Theme" uid="uid://lrloelqbugpi" path="res://manaBar.tres" id="1_s5f5x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1aih"]
+bg_color = Color(0.180392, 0.615686, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_526cu"]
+bg_color = Color(0.231373, 0.376471, 1, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.145098, 0.129412, 0.780392, 1)
+
+[node name="ManaNode" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Mana" type="Node" parent="."]
+script = ExtResource("1_qst30")
+
+[node name="ManaBar" type="ProgressBar" parent="."]
+layout_direction = 2
+layout_mode = 0
+offset_right = 488.0
+offset_bottom = 27.0
+size_flags_horizontal = 0
+theme = ExtResource("1_s5f5x")
+theme_override_styles/background = SubResource("StyleBoxFlat_h1aih")
+theme_override_styles/fill = SubResource("StyleBoxFlat_526cu")
+max_value = 250.0
+value = 250.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[connection signal="changed" from="Mana" to="ManaBar" method="set_value"]
+[connection signal="max_changed" from="Mana" to="ManaBar" method="set_max"]

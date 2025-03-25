@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://v8vcw0eknipl"]
+
+[ext_resource type="Texture2D" uid="uid://dc3sq5iqpwglv" path="res://Assets/Oggetti di scena fisici/Muri/Muro normale/Muro.png" id="1_xiff0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55qhk"]
+size = Vector2(73, 950)
+
+[node name="Muro" type="StaticBody2D"]
+position = Vector2(114, 58)
+collision_layer = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -373)
+scale = Vector2(1, 3.48)
+texture = ExtResource("1_xiff0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9.5, -376)
+shape = SubResource("RectangleShape2D_55qhk")
