@@ -6,4 +6,4 @@ Come progetto di tesi il gioco è stato ampliato con'un interfaccia che permette
 
 Nella cartella 'Eseguibile' è possibile giocare al gioco scariscando il progetto ed eseguendo il file 'Eseguibile Win' oppure 'Eseguibile Linux'
 
-Per ogni informazione riguardante il gioco e l'interfaccia IA è possibile consultare il documento 'Tesi.pdf'
+Per ogni informazione riguardante il gioco e l'interfaccia IA è possibile consultare il documento 'Tesi.pdf' contenuto nella cartella 'Documentazione'
